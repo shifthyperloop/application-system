@@ -1,4 +1,4 @@
-// Application.model.js
+// Application.js
 const mongoose = require("mongoose");
 const leaderApplicationSchema = new mongoose.Schema({
     experience: String,

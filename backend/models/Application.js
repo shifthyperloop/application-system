@@ -1,5 +1,4 @@
-// Application.model.js
-import LeaderApplication from "./LeaderApplication.model";
+import LeaderApplication from "./LeaderApplication";
 const mongoose = require("mongoose");
 
 const applicationSchema = new mongoose.Schema({
@@ -11,10 +10,7 @@ const applicationSchema = new mongoose.Schema({
     yearOfStudy: Number,
     fieldOfStudy: String,
     wantedGroups: [String],
-    applyingForMember: {
-        type: Boolean,
-        default: true,
-    },
+    applyingForMember: { type: Boolean, default: true },
     leaderApplication: LeaderApplication,
     experience: String,
     motivation: String,
