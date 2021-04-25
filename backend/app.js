@@ -1,23 +1,22 @@
-const express = require('express')
+const express = require('express');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const app = express()
+const routes = require('./routes');
+
 const port = 3000
 
 const mongoDB = 'mongodb://127.0.0.1/my_database';
-mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose
+    .connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true})
+    .then(() => {
+        const app = express();
+        app.use(bodyParser.json())
 
-//Get the default connection
-const db = mongoose.connection;
+        app.use('/api/v0', routes);
 
-//Bind connection to error event (to get notification of connection errors)
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+        app.listen(port, () => {
+            console.log(`Server listening at http://localhost:${port}`)
+        })
+    });
 
-
-
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
-
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
-})
+mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));

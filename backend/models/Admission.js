@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
-const admissionSchema = new mongoose.Schema({
-    name: String
+const schema = new mongoose.Schema({
+    name: String,
+    date: { type: Date, default: Date.now() },
 });
 
-const Admission = mongoose.model("Admission", admissionSchema);
-module.exports = Admission;
+module.exports = mongoose.model("Admission", schema);
