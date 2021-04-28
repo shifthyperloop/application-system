@@ -5,6 +5,10 @@ export const apiGet = (path) => {
         .then(response => response.json());
 };
 
+export const apiDelete = (path) => {
+    return fetch(config.apiUrl + 'v0/' + path, { method: "DELETE" });
+};
+
 export const apiPost = (path, body) => {
     return fetch(config.apiUrl + "v0/" + path, {
         method: "POST",

@@ -16,4 +16,16 @@ router.post('/admission', async (req, res) => {
     res.send(admission);
 });
 
+router.delete('/admission/:admissionId', async (req, res, next) => {
+    try {
+        await Admission.findByIdAndDelete(req.params.admissionId);
+
+        res.status(204)
+        res.send();
+    } catch (err) {
+        res.status(404);
+        next("Admission not found");
+    }
+});
+
 module.exports = router;
