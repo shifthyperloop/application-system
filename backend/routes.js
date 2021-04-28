@@ -7,6 +7,11 @@ router.get('/admissions', async (req, res) => {
     res.send(admissions);
 });
 
+router.get('/admission/:admissionId', async (req, res) => {
+    const admission = await Admission.findById(req.params.admissionId);
+    res.send(admission);
+});
+
 router.post('/admission', async (req, res) => {
     console.log(req.body);
     const admission = new Admission({
