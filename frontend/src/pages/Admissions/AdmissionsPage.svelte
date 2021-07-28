@@ -1,4 +1,5 @@
 <script>
+    import { _ } from 'svelte-i18n'
     import getAdmissions from "../../api/getAdmissions";
     import newAdmission from "../../api/newAdmission";
     import deleteAdmission from "../../api/deleteAdmission";
@@ -37,14 +38,20 @@
 
 <div class="content">
     {#await admissionsPromise}
-        <p>Loading...</p>
+        <p>{$_('app.page.Admissions.loading')}</p>
     {:then admissions}
-        <h1>Velg opptak</h1>
+        <h1>{$_('app.page.Admissions.title')}</h1>
         <ul>
             {#each admissions as admission}
                 <Admission admission={admission} deleteAdmission={deleteAdmissionClick} />
             {/each}
-            <li>Nytt: <input type="text" bind:value={newAdmissionName} /><input type="button" value="Lag" on:click={newAdmissionClick} /></li>
+            <li>
+                <label>
+                    {$_('app.page.Admissions.new')}
+                    <input type="text" bind:value={newAdmissionName} />
+                    <input type="button" value={$_('app.page.Admissions.create')} on:click={newAdmissionClick} />
+                </label>
+            </li>
         </ul>
     {:catch error}
         <h1>{error}</h1>

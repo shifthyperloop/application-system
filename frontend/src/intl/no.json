@@ -1,0 +1,9 @@
+{
+  "app.components.NavigationBar.admissionSystem": "Opptakssystem",
+  "app.components.NavigationBar.home": "Hjem",
+  "app.components.AdmissionListItem.delete": "Slett",
+  "app.page.Admissions.title": "Velg opptak",
+  "app.page.Admissions.new": "Nytt: ",
+  "app.page.Admissions.create": "Lag",
+  "app.page.Admissions.loading": "Laster inn..."
+}

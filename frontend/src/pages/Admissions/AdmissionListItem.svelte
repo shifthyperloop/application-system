@@ -1,5 +1,6 @@
 <script>
     import { Link } from 'svelte-navigator';
+    import {_} from "svelte-i18n";
 
     export let admission, deleteAdmission;
 </script>
@@ -37,5 +38,5 @@
 
 <li>
     <Link to="admission/{admission._id}">{ admission.name }</Link>
-    <input type="button" value="Delete"  on:click={() => deleteAdmission(admission._id)} />
+    <input type="button" value={$_("app.components.AdmissionListItem.delete")}  on:click={() => deleteAdmission(admission._id)} />
 </li>

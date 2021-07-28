@@ -1,0 +1,9 @@
+{
+  "app.components.NavigationBar.admissionSystem": "Admission system",
+  "app.components.NavigationBar.home": "Home",
+  "app.components.AdmissionListItem.delete": "Delete",
+  "app.page.Admissions.title": "Choose admission",
+  "app.page.Admissions.new": "New: ",
+  "app.page.Admissions.create": "Create",
+  "app.page.Admissions.loading": "Loading..."
+}

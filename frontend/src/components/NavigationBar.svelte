@@ -1,4 +1,5 @@
 <script>
+    import {_} from 'svelte-i18n';
     import {Link} from 'svelte-navigator';
 </script>
 
@@ -33,9 +34,9 @@
 <header>
     <nav>
         <div class="logo">
-            <img src="/shift-logo-with-text.png">
-            <span>Admissions System</span>
+            <img src="/shift-logo-with-text.png"  alt="Shift hyperloop"/>
+            <span>{$_("app.components.NavigationBar.admissionSystem")}</span>
         </div>
-        <Link class="navLink" to="/">Home</Link>
+        <Link class="navLink" to="/">{$_("app.components.NavigationBar.home")}</Link>
     </nav>
 </header>
