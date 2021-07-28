@@ -21,19 +21,32 @@
 </script>
 
 <style>
+    .content {
+        text-align: center;
+    }
+
+    ul {
+        margin: auto;
+        display: block;
+        width: 500px;
+        list-style-type: none;
+    }
+
 
 </style>
 
-{#await admissionsPromise}
-    <p>Loading...</p>
-{:then admissions}
-    <h1>Opptak:</h1>
-    <ul>
-        {#each admissions as admission}
-            <Admission admission={admission} deleteAdmission={deleteAdmissionClick} />
-        {/each}
-        <li>Nytt: <input type="text" bind:value={newAdmissionName} /><input type="button" value="Lag" on:click={newAdmissionClick} /></li>
-    </ul>
-{:catch error}
-    <h1>{error}</h1>
-{/await}
+<div class="content">
+    {#await admissionsPromise}
+        <p>Loading...</p>
+    {:then admissions}
+        <h1>Velg opptak</h1>
+        <ul>
+            {#each admissions as admission}
+                <Admission admission={admission} deleteAdmission={deleteAdmissionClick} />
+            {/each}
+            <li>Nytt: <input type="text" bind:value={newAdmissionName} /><input type="button" value="Lag" on:click={newAdmissionClick} /></li>
+        </ul>
+    {:catch error}
+        <h1>{error}</h1>
+    {/await}
+</div>
