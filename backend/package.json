@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon server.js"
+    "predev": "brew services start mongodb-community@5.0",
+    "dev": "nodemon app.js",
+    "postdev": "brew services stop mongodb-community@5.0"
   },
   "license": "ISC",
   "dependencies": {
