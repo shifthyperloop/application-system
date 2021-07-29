@@ -1,9 +1,8 @@
 <script>
     import {_} from 'svelte-i18n'
     import getAdmissions from "../../api/admissions/getAdmissions";
-    import newAdmission from "../../api/admission/newAdmission";
     import deleteAdmission from "../../api/admission/deleteAdmission";
-    import Admission from "./AdmissionListItem.svelte";
+    import AdmissionListItem from "./AdmissionListItem.svelte";
     import NewAdmissionInput from "./NewAdmissionInput.svelte";
 
     let admissions = getAdmissions();
@@ -40,7 +39,7 @@
         <h1>{$_('app.page.Admissions.title')}</h1>
         <ul>
             {#each admissions as admission}
-                <Admission admission={admission} deleteAdmission={deleteAdmissionClick} />
+                <AdmissionListItem admission={admission} deleteAdmission={deleteAdmissionClick} />
             {/each}
             <NewAdmissionInput onNewAdmission={onNewAdmission}/>
         </ul>

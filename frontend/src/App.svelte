@@ -1,9 +1,9 @@
 <script>
     import {Router, Route} from 'svelte-navigator';
     import {addMessages, getLocaleFromNavigator, init} from 'svelte-i18n';
-    import AdmissionsPage from "./pages/Admissions/AdmissionsPage.svelte";
-    import AdmissionPage from "./pages/Admission/AdmissionPage.svelte";
-    import NavigationBar from "./components/NavigationBar.svelte";
+    import AdmissionsPage from "./page/Admissions/AdmissionsPage.svelte";
+    import AdmissionPage from "./page/Admission/AdmissionPage.svelte";
+    import NavigationBar from "./component/NavigationBar.svelte";
 
     import en from './intl/en.json';
     import no from './intl/no.json';

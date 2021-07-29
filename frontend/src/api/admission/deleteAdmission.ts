@@ -1,6 +1,6 @@
 import { apiDelete } from "../apiRequest";
 
-const deleteAdmission = (id) => {
+const deleteAdmission = (id: string): Promise<void> => {
     return apiDelete('admission/'+id);
 }
 

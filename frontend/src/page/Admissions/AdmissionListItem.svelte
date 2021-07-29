@@ -1,8 +1,10 @@
-<script>
+<script lang="ts">
     import { Link } from 'svelte-navigator';
     import {_} from "svelte-i18n";
+    import Admission from "../../model/Admission";
 
-    export let admission, deleteAdmission;
+    export let admission: Admission,
+        deleteAdmission: (id: string) => void;
 </script>
 
 <style>
