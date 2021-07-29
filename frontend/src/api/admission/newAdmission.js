@@ -1,4 +1,4 @@
-import {apiPost} from "./apiRequest";
+import {apiPost} from "../apiRequest";
 
 const newAdmission = (name) => {
     return apiPost('admission', {name});

@@ -1,5 +1,5 @@
 <script>
-    import getAdmission from "../../api/getAdmission";
+    import getAdmission from "../../api/admission/getAdmission";
 
     let admissionPromise;
     $: admissionPromise = getAdmission(admissionId);

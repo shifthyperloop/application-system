@@ -1,4 +1,4 @@
-import { apiGet } from "./apiRequest";
+import { apiGet } from "../apiRequest";
 
 const getAdmissions = () => {
     return apiGet('admissions');

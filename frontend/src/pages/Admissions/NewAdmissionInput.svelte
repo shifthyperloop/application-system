@@ -1,7 +1,7 @@
 <script>
     import {_} from "svelte-i18n";
     import {form} from 'svelte-forms';
-    import newAdmission from "../../api/newAdmission";
+    import newAdmission from "../../api/admission/newAdmission";
     import {afterUpdate, onMount} from "svelte";
 
     export let onNewAdmission;

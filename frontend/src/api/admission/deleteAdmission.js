@@ -1,4 +1,4 @@
-import { apiDelete } from "./apiRequest";
+import { apiDelete } from "../apiRequest";
 
 const deleteAdmission = (id) => {
     return apiDelete('admission/'+id);
