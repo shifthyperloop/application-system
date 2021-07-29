@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const routes = require('./routes');
+const router = require('./router');
 const cors = require('cors');
 
 const port = 3000
@@ -12,18 +12,31 @@ const corsOptions = {
 }
 
 const mongoDB = 'mongodb://127.0.0.1/my_database';
-mongoose
-    .connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true})
-    .then(() => {
-        const app = express();
-        app.use(cors(corsOptions));
-        app.use(bodyParser.json());
+mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 
-        app.use('/api/v0', routes);
+const db = mongoose.connection;
 
-        app.listen(port, () => {
-            console.log(`Server listening at http://localhost:${port}`)
-        })
-    });
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once("open", () => {
+    console.log("DB connected successfully");
 
-mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
+    const app = express();
+    app.use(cors(corsOptions));
+    app.use(bodyParser.json());
+
+    app.use('/api/v0', router);
+    app.use(errorHandler);
+
+    app.listen(port, () => {
+        console.log(`Server listening at http://localhost:${port}`)
+    })
+})
+
+function errorHandler (err, req, res, next) {
+    if (res.headersSent) {
+        return next(err);
+    }
+    res.setHeader('Content-Type', 'application/json');
+    res.status(500);
+    res.send(JSON.stringify(err));
+}
