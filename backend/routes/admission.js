@@ -15,7 +15,6 @@ router.post('', async (req, res, next) => {
         await admission.save();
         res.send(admission);
     } catch (err) {
-        res.status(404);
         next(err);
     }
 });
@@ -32,4 +31,4 @@ router.delete('/:admissionId', async (req, res, next) => {
     }
 });
 
-module.exports =  router;
+module.exports = router;

@@ -1,5 +1,7 @@
+require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const router = require('./router');
 const cors = require('cors');
@@ -8,7 +10,8 @@ const port = 3000
 
 const corsOptions = {
     origin: 'http://localhost:5000',
-    optionsSuccessStatus: 200 // For legacy browser support
+    optionsSuccessStatus: 200, // For legacy browser support
+    credentials: true,
 }
 
 const mongoDB = 'mongodb://127.0.0.1/my_database';
@@ -23,6 +26,7 @@ db.once("open", () => {
     const app = express();
     app.use(cors(corsOptions));
     app.use(bodyParser.json());
+    app.use(cookieParser());
 
     app.use('/api/v0', router);
     app.use(errorHandler);

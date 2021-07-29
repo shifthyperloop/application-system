@@ -1,5 +1,5 @@
 class BaseEntity {
-  _id: string;
+  _id?: string;
 }
 
 export default BaseEntity;

@@ -5,5 +5,20 @@
   "app.page.Admissions.title": "Velg opptak",
   "app.page.Admissions.new": "Nytt: ",
   "app.page.Admissions.create": "Lag",
-  "app.page.Admissions.loading": "Laster inn..."
+  "app.page.Admissions.loading": "Laster inn...",
+  "app.auth.email": "E-post",
+  "app.auth.email.error.required": "E-post kreves",
+  "app.auth.email.error.invalid": "Ugyldig e-post",
+  "app.auth.password": "Passord",
+  "app.auth.password.error.required": "Passord kreves",
+  "app.page.Login.title": "Logg inn",
+  "app.page.Login.login": "Send",
+  "app.page.Login.signup": "Har du ikke en bruker?",
+  "app.page.Signup.title": "Registrer deg",
+  "app.page.Signup.name": "Navn",
+  "app.page.Signup.name.error.required": "Navn kreves",
+  "app.page.Signup.confirmPassword": "Bekreft passord",
+  "app.page.Signup.confirmPassword.error.notEqual": "Passordene er ikke like",
+  "app.page.Signup.signup": "Send",
+  "app.page.Signup.login": "Har du allerede en bruker?"
 }

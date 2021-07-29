@@ -5,5 +5,20 @@
   "app.page.Admissions.title": "Choose admission",
   "app.page.Admissions.new": "New: ",
   "app.page.Admissions.create": "Create",
-  "app.page.Admissions.loading": "Loading..."
+  "app.page.Admissions.loading": "Loading...",
+  "app.auth.email": "Email",
+  "app.auth.email.error.required": "Email is required",
+  "app.auth.email.error.invalid": "Invalid email",
+  "app.auth.password": "Password",
+  "app.auth.password.error.required": "Password is required",
+  "app.page.Login.title": "Log in",
+  "app.page.Login.login": "Send",
+  "app.page.Login.signup": "Don't have an account?",
+  "app.page.Signup.title": "Sign up",
+  "app.page.Signup.name": "Name",
+  "app.page.Signup.name.error.required": "Name is required",
+  "app.page.Signup.confirmPassword": "Confirm password",
+  "app.page.Signup.confirmPassword.error.notEqual": "Passwords are not equal",
+  "app.page.Signup.signup": "Submit",
+  "app.page.Signup.login": "Already have an account?"
 }

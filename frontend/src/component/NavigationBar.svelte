@@ -1,6 +1,7 @@
 <script>
     import {_} from 'svelte-i18n';
     import {Link} from 'svelte-navigator';
+    import UserArea from "./UserArea.svelte";
 </script>
 
 <style>
@@ -38,5 +39,6 @@
             <span>{$_("app.components.NavigationBar.admissionSystem")}</span>
         </div>
         <Link class="navLink" to="/">{$_("app.components.NavigationBar.home")}</Link>
+        <UserArea />
     </nav>
 </header>
