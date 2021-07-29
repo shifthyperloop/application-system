@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import {Router, Route} from 'svelte-navigator';
     import {addMessages, getLocaleFromNavigator, init} from 'svelte-i18n';
     import AdmissionsPage from "./page/Admissions/AdmissionsPage.svelte";

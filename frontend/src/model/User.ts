@@ -6,4 +6,4 @@ class User extends BaseEntity {
     password: string;
 }
 
-module.exports = User;
+export default User;
