@@ -16,6 +16,7 @@
         await deleteAdmission(id);
         admissions = (await admissions).filter(admission => admission._id !== id);
     }
+  import LoaderPage from "../Loader/LoaderPage.svelte";
 </script>
 
 <style>
@@ -35,7 +36,7 @@
 
 <div class="content">
     {#await admissions}
-        <p>{$_('app.page.Admissions.loading')}</p>
+        <LoaderPage />
     {:then admissions}
         <h1>{$_('app.page.Admissions.title')}</h1>
         <ul>

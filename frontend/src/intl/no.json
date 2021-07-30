@@ -6,7 +6,6 @@
   "app.page.Admissions.title": "Velg opptak",
   "app.page.Admissions.new": "Nytt: ",
   "app.page.Admissions.create": "Lag",
-  "app.page.Admissions.loading": "Laster inn...",
   "app.auth.email": "E-post",
   "app.auth.email.error.required": "E-post kreves",
   "app.auth.email.error.invalid": "Ugyldig e-post",

@@ -6,7 +6,6 @@
   "app.page.Admissions.title": "Choose admission",
   "app.page.Admissions.new": "New: ",
   "app.page.Admissions.create": "Create",
-  "app.page.Admissions.loading": "Loading...",
   "app.auth.email": "Email",
   "app.auth.email.error.required": "Email is required",
   "app.auth.email.error.invalid": "Invalid email",

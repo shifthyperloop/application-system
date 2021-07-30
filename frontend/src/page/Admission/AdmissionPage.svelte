@@ -1,5 +1,6 @@
 <script>
     import getAdmission from "../../api/admission/getAdmission";
+    import LoaderPage from "../Loader/LoaderPage.svelte";
 
     let admissionPromise;
     $: admissionPromise = getAdmission(admissionId);
@@ -12,7 +13,7 @@
 </style>
 
 {#await admissionPromise}
-    <p>Loading...</p>
+    <LoaderPage />
 {:then admission}
     <h1>{admission.name}</h1>
 {:catch error}
