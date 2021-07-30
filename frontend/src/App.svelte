@@ -10,6 +10,7 @@
   import SignupPage from "./page/Signup/SignupPage.svelte";
   import getLoggedIn from "./api/auth/getLoggedIn";
   import {loggedInStore} from "./store/authStore";
+  import LoaderPage from "./page/Loader/LoaderPage.svelte";
 
   addMessages('en', en);
   addMessages('no', no);
@@ -19,6 +20,7 @@
     initialLocale: getLocaleFromNavigator(),
   });
 
+  let loading = true;
   let isLoggedIn: boolean;
   loggedInStore.subscribe(value => {
     isLoggedIn = !!value
@@ -29,18 +31,25 @@
     }
   });
 
-  getLoggedIn().then(value => loggedInStore.set(value));
+  getLoggedIn().then(value => {
+    loading = false;
+    loggedInStore.set(value)
+  });
 
 </script>
 
-<Router>
-    {#if isLoggedIn}
-        <NavigationBar />
-    {/if}
-    <main>
-        <Route component={AdmissionsPage} />
-        <Route path="/login" component={LoginPage} />
-        <Route path="/signup" component={SignupPage} />
-        <Route path="/admission/*admissionId" component={AdmissionPage} />
-    </main>
-</Router>
+{#if loading}
+    <LoaderPage />
+{:else}
+    <Router>
+        {#if isLoggedIn}
+            <NavigationBar />
+        {/if}
+        <main>
+            <Route component={AdmissionsPage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/signup" component={SignupPage} />
+            <Route path="/admission/*admissionId" component={AdmissionPage} />
+        </main>
+    </Router>
+{/if}
