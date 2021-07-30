@@ -1,22 +1,22 @@
 <script lang="ts">
-    import {_} from 'svelte-i18n'
-    import getAdmissions from "../../api/admissions/getAdmissions";
-    import deleteAdmission from "../../api/admission/deleteAdmission";
-    import AdmissionListItem from "./AdmissionListItem.svelte";
-    import NewAdmissionInput from "./NewAdmissionInput.svelte";
-    import Admission from "../../model/Admission";
-
-    let admissions: Admission[] | Promise<Admission[]> = getAdmissions();
-
-    let onNewAdmission = async () => {
-        admissions = getAdmissions();
-    }
-
-    let deleteAdmissionClick = async (id: string) => {
-        await deleteAdmission(id);
-        admissions = (await admissions).filter(admission => admission._id !== id);
-    }
+  import {_} from 'svelte-i18n'
+  import getAdmissions from "../../api/admissions/getAdmissions";
+  import deleteAdmission from "../../api/admission/deleteAdmission";
+  import AdmissionListItem from "./AdmissionListItem.svelte";
+  import NewAdmissionInput from "./NewAdmissionInput.svelte";
+  import Admission from "../../model/Admission";
   import LoaderPage from "../Loader/LoaderPage.svelte";
+
+  let admissions: Admission[] | Promise<Admission[]> = getAdmissions();
+
+  let onNewAdmission = async () => {
+    admissions = getAdmissions();
+  }
+
+  let deleteAdmissionClick = async (id: string) => {
+    await deleteAdmission(id);
+    admissions = (await admissions).filter(admission => admission._id !== id);
+  }
 </script>
 
 <style>

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import {Router, Route, navigate} from 'svelte-navigator';
+  import {Route, Router} from 'svelte-navigator';
   import {addMessages, getLocaleFromNavigator, init} from 'svelte-i18n';
   import AdmissionsPage from "./page/Admissions/AdmissionsPage.svelte";
   import AdmissionPage from "./page/Admission/AdmissionPage.svelte";
@@ -11,6 +11,7 @@
   import getLoggedIn from "./api/auth/getLoggedIn";
   import {loggedInStore} from "./store/authStore";
   import LoaderPage from "./page/Loader/LoaderPage.svelte";
+  import LoginNavigatorService from "./service/LoginNavigatorService.svelte";
 
   addMessages('en', en);
   addMessages('no', no);
@@ -21,35 +22,30 @@
   });
 
   let loading = true;
-  let isLoggedIn: boolean;
+  let isLoggedIn = false;
   loggedInStore.subscribe(value => {
     isLoggedIn = !!value
-    if (!isLoggedIn) {
-      navigate("/login");
-    } else {
-      navigate("/");
-    }
   });
 
   getLoggedIn().then(value => {
     loading = false;
     loggedInStore.set(value)
   });
-
 </script>
 
 {#if loading}
     <LoaderPage />
 {:else}
-    <Router>
-        {#if isLoggedIn}
-            <NavigationBar />
-        {/if}
-        <main>
-            <Route component={AdmissionsPage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/signup" component={SignupPage} />
-            <Route path="/admission/*admissionId" component={AdmissionPage} />
-        </main>
-    </Router>
+  <Router>
+    <LoginNavigatorService />
+    {#if isLoggedIn}
+      <NavigationBar />
+    {/if}
+    <main>
+      <Route component={AdmissionsPage} />
+      <Route path="/login" component={LoginPage} />
+      <Route path="/signup" component={SignupPage} />
+      <Route path="/admission/*admissionId" component={AdmissionPage} />
+    </main>
+  </Router>
 {/if}
