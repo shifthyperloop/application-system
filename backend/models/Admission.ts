@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
-interface Admission extends mongoose.Document {
+export interface IAdmission extends mongoose.Document {
     name: string;
     date: Date;
 }
 
-const schema = new mongoose.Schema<Admission>({
+const schema = new mongoose.Schema<IAdmission>({
     name: {
         type: String,
         required: true,
@@ -14,4 +14,4 @@ const schema = new mongoose.Schema<Admission>({
     date: { type: Date, default: Date.now() },
 });
 
-export default mongoose.model<Admission>("Admission", schema);
+export default mongoose.model<IAdmission>("Admission", schema);
