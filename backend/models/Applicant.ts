@@ -3,6 +3,7 @@ import validateEmail from "./validators/emailValidator";
 import validatePhoneNumber from "./validators/phoneNumberValidator";
 
 export interface IApplicant extends Document {
+    admissionId: string,
     name: string;
     age?: number;
     fieldOfStudy?: string;
@@ -12,6 +13,10 @@ export interface IApplicant extends Document {
 }
 
 const applicantSchema = new Schema<IApplicant>({
+    admissionId: {
+        type: Schema.Types.ObjectId,
+        required: true,
+    },
     name: {
         type: String,
         required: true,
