@@ -49,7 +49,7 @@ router.post('/logout', async (req, res, next) => {
 })
 
 router.get('/loggedIn', verifyToken, async (req, res, next) => {
-    res.status(200).json(User.findById(req.verifiedUserId).getPublicFields());
+    res.status(200).json((await User.findById(req.verifiedUserId)).getPublicFields());
 })
 
 function generateToken(user) {
