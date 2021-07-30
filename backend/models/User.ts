@@ -1,9 +1,21 @@
-const validateEmail = require("./validators/emailValidator");
-const mongoose = require("mongoose");
-const bcrypt = require('bcrypt');
+import validateEmail from './validators/emailValidator';
+import bcrypt from 'bcrypt';
+import {Schema, model, Document} from 'mongoose';
+import {NextFunction} from "express";
+
 const SALT_WORK_FACTOR = 10;
 
-const schema = new mongoose.Schema({
+export interface IUser extends Document {
+    email: string;
+    name: string;
+    password: string;
+    registeredDate: Date;
+
+    comparePassword(password: string): Promise<boolean>;
+    getPublicFields(): PublicUser;
+}
+
+const schema = new Schema<IUser>({
     email: {
         type: String,
         trim: true,
@@ -27,19 +39,19 @@ const schema = new mongoose.Schema({
     },
 });
 
-schema.pre('save', function(next) {
+schema.pre('save', function(next: NextFunction): void {
     const user = this;
 
     if (!user.isModified('password')) {
         return next();
     }
 
-    bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
+    bcrypt.genSalt(SALT_WORK_FACTOR, (err: any, salt: string) => {
         if (err) {
             return next(err);
         }
 
-        bcrypt.hash(user.password, salt, (err, hash) => {
+        bcrypt.hash(user.password, salt, (err: any, hash: string) => {
             if (err) {
                 return next(err);
             }
@@ -50,16 +62,22 @@ schema.pre('save', function(next) {
     });
 });
 
-schema.methods.comparePassword = function(candidatePassword) {
+schema.methods.comparePassword = function(candidatePassword: string): Promise<boolean> {
     return new Promise(((resolve, reject) => {
-        bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+        bcrypt.compare(candidatePassword, this.password, (err: any, isMatch: boolean) => {
             if (err) reject(err);
             resolve(isMatch);
         });
     }))
 };
 
-schema.methods.getPublicFields = function() {
+interface PublicUser {
+    name: string,
+    _id: any,
+    email: string
+}
+
+schema.methods.getPublicFields = function(): PublicUser {
     return {
         _id: this._id,
         email: this.email,
@@ -68,4 +86,4 @@ schema.methods.getPublicFields = function() {
 };
 
 
-module.exports = mongoose.model("User", schema);
+export default model<IUser>("User", schema);

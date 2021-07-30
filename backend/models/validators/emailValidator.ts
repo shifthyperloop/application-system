@@ -1,7 +1,7 @@
 const regExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-const validateEmail = function(email) {
+const validateEmail = function(email: string): boolean {
     return regExp.test(email)
 };
 
-module.exports = validateEmail;
+export default validateEmail;

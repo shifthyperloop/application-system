@@ -1,10 +1,11 @@
 require('dotenv').config()
-const express = require('express');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const mongoose = require('mongoose');
-const router = require('./router');
-const cors = require('cors');
+
+import mongoose from "mongoose";
+import express, {NextFunction} from 'express';
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import router from "./router";
 
 const port = 3000
 
@@ -36,7 +37,7 @@ db.once("open", () => {
     })
 })
 
-function errorHandler (err, req, res, next) {
+function errorHandler (err: any, req: express.Request, res: express.Response, next: NextFunction) {
     if (res.headersSent) {
         return next(err);
     }

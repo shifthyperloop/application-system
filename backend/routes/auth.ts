@@ -1,12 +1,12 @@
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const router = express.Router();
-const User = require("../models/User");
-const verifyToken = require('../middleware/verifyToken');
+import User, {IUser} from "../models/User";
+import verifyToken, {AuthorizedRequest} from "../middleware/verifyToken";
+import jwt from "jsonwebtoken";
+import express, {NextFunction} from "express";
 
 const tokenSecret = process.env.JWT_SECRET;
+const router = express.Router();
 
-router.post('/signup', async (req, res, next) => {
+router.post('/signup', async (req: express.Request, res: express.Response, next: NextFunction) => {
     try {
         const user = new User({
             email: req.body.email,
@@ -21,7 +21,7 @@ router.post('/signup', async (req, res, next) => {
     }
 })
 
-router.post('/login', async (req, res, next) => {
+router.post('/login', async (req: express.Request, res: express.Response, next: NextFunction) => {
     try {
         const user = await User.findOne({email: req.body.email});
         if (!user) {
@@ -39,7 +39,7 @@ router.post('/login', async (req, res, next) => {
     }
 })
 
-router.post('/logout', async (req, res, next) => {
+router.post('/logout', async (req: express.Request, res: express.Response) => {
     res.cookie("authorization", "", {
         secure: process.env.NODE_ENV !== "development",
         httpOnly: true,
@@ -48,15 +48,15 @@ router.post('/logout', async (req, res, next) => {
     res.json({});
 })
 
-router.get('/loggedIn', verifyToken, async (req, res, next) => {
+router.get('/loggedIn', verifyToken, async (req: AuthorizedRequest, res: express.Response) => {
     res.status(200).json((await User.findById(req.verifiedUserId)).getPublicFields());
 })
 
-function generateToken(user) {
+function generateToken(user: IUser) {
     return jwt.sign({data: user._id}, tokenSecret, {expiresIn: '24h'})
 }
 
-function setJwtToken(res, token) {
+function setJwtToken(res: express.Response, token: string) {
     res.cookie("authorization", token, {
         secure: process.env.NODE_ENV !== "development",
         httpOnly: true,
@@ -64,4 +64,4 @@ function setJwtToken(res, token) {
     });
 }
 
-module.exports = router;
+export default router;

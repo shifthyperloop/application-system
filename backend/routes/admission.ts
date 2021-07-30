@@ -1,13 +1,14 @@
-const express = require('express');
-const Admission = require("../models/Admission");
+import express, {NextFunction} from "express";
+import Admission from "../models/Admission";
+
 const router = express.Router();
 
-router.get('/:admissionId', async (req, res) => {
+router.get('/:admissionId', async (req: express.Request, res: express.Response) => {
     const admission = await Admission.findById(req.params.admissionId);
     res.send(admission);
 });
 
-router.post('', async (req, res, next) => {
+router.post('', async (req: express.Request, res: express.Response, next: NextFunction) => {
     try {
         const admission = new Admission({
             name: req.body.name,
@@ -19,7 +20,7 @@ router.post('', async (req, res, next) => {
     }
 });
 
-router.delete('/:admissionId', async (req, res, next) => {
+router.delete('/:admissionId', async (req: express.Request, res: express.Response, next: NextFunction) => {
     try {
         await Admission.findByIdAndDelete(req.params.admissionId);
 
@@ -31,4 +32,4 @@ router.delete('/:admissionId', async (req, res, next) => {
     }
 });
 
-module.exports = router;
+export default router;
