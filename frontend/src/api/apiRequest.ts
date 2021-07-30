@@ -37,7 +37,6 @@ export const apiPost = async (path: string, body: any): Promise<any> => {
 const isLoggedIn = (response: Response): boolean => {
     if (response.status === 401) {
         loggedInStore.set(null);
-        navigate("/login");
         return false;
     }
     return true;

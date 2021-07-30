@@ -4,7 +4,7 @@
   import {onMount} from "svelte";
   // @ts-ignore
   import {form} from "svelte-forms";
-  import {navigate, Link} from "svelte-navigator";
+  import {Link} from "svelte-navigator";
   import signup from "../../api/auth/signup";
 
   let email = "";
@@ -16,7 +16,6 @@
     signupForm.validate();
     if ($signupForm.valid) {
       await signup(email, name, password);
-      navigate("/");
     }
   }
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import {Router, Route} from 'svelte-navigator';
+  import {Router, Route, navigate} from 'svelte-navigator';
   import {addMessages, getLocaleFromNavigator, init} from 'svelte-i18n';
   import AdmissionsPage from "./page/Admissions/AdmissionsPage.svelte";
   import AdmissionPage from "./page/Admission/AdmissionPage.svelte";
@@ -20,7 +20,14 @@
   });
 
   let isLoggedIn: boolean;
-  loggedInStore.subscribe(value => isLoggedIn = !!value);
+  loggedInStore.subscribe(value => {
+    isLoggedIn = !!value
+    if (!isLoggedIn) {
+      navigate("/login");
+    } else {
+      navigate("/");
+    }
+  });
 
   getLoggedIn().then(value => loggedInStore.set(value));
 

@@ -40,7 +40,8 @@ function errorHandler (err, req, res, next) {
     if (res.headersSent) {
         return next(err);
     }
+    console.log(err);
     res.setHeader('Content-Type', 'application/json');
     res.status(500);
-    res.send(JSON.stringify(err));
+    res.json({error: err.message});
 }

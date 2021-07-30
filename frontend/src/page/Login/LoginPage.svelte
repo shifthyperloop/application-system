@@ -5,7 +5,7 @@
     import {onMount} from "svelte";
     // @ts-ignore
     import {form} from "svelte-forms";
-    import {navigate, Link} from "svelte-navigator";
+    import {Link} from "svelte-navigator";
 
 
     let email = "";
@@ -15,7 +15,6 @@
         loginForm.validate();
         if ($loginForm.valid) {
           await login(email, password);
-          navigate("/");
         }
     }
 

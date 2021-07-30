@@ -39,6 +39,15 @@ router.post('/login', async (req, res, next) => {
     }
 })
 
+router.post('/logout', async (req, res, next) => {
+    res.cookie("authorization", "", {
+        secure: process.env.NODE_ENV !== "development",
+        httpOnly: true,
+        expires: new Date(),
+    });
+    res.json({});
+})
+
 router.get('/loggedIn', verifyToken, async (req, res, next) => {
     res.status(200).json(User.findById(req.verifiedUserId).getPublicFields());
 })
