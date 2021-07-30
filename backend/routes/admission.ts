@@ -24,7 +24,7 @@ router.delete('/:admissionId', async (req: express.Request, res: express.Respons
     try {
         await Admission.findByIdAndDelete(req.params.admissionId);
 
-        res.status(204)
+        res.status(200)
         res.json({data: 'ok'});
     } catch (err) {
         res.status(404);
