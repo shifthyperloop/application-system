@@ -30,6 +30,9 @@
         background: #0072BC;
         color: white;
     }
+    .fillSpace {
+        flex: 1;
+    }
 </style>
 
 <header>
@@ -38,7 +41,10 @@
             <img src="/shift-logo-with-text.png"  alt="Shift hyperloop"/>
             <span>{$_("app.components.NavigationBar.admissionSystem")}</span>
         </div>
-        <Link class="navLink" to="/">{$_("app.components.NavigationBar.home")}</Link>
+        <div class="navLinks">
+            <Link class="navLink" to="/">{$_("app.components.NavigationBar.home")}</Link>
+        </div>
+        <div class="fillSpace"></div>
         <UserArea />
     </nav>
 </header>
