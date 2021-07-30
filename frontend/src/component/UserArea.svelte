@@ -9,7 +9,7 @@
     }
 
     let loggedInUser: User;
-    loggedInStore.subscribe(value => loggedInUser = value);
+    loggedInStore.subscribe(value => value && (loggedInUser = value));
 </script>
 
 <style>
