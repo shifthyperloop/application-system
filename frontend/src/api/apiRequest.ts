@@ -1,6 +1,5 @@
 import config from "../config";
 import {loggedInStore} from "../store/authStore";
-import {navigate} from "svelte-navigator";
 
 const fetchOptions: RequestInit = {
     credentials: 'include'
@@ -8,15 +7,12 @@ const fetchOptions: RequestInit = {
 
 export const apiGet = async (path: string): Promise<any> => {
     const response = await fetch(config.apiUrl + 'v0/' + path, fetchOptions);
-    if (!isLoggedIn(response)) {
-        return null;
-    }
-    return response.json();
+    return handleJsonResponse(response);
 };
 
 export const apiDelete = async (path: string): Promise<void> => {
     const response = await fetch(config.apiUrl + 'v0/' + path, { ...fetchOptions, method: "DELETE" });
-    isLoggedIn(response);
+    return handleJsonResponse(response);
 };
 
 export const apiPost = async (path: string, body: any): Promise<any> => {
@@ -27,17 +23,26 @@ export const apiPost = async (path: string, body: any): Promise<any> => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(body)
-    })
-    if (!isLoggedIn(response)) {
-        return null;
-    }
-    return response.json();
+    });
+    return handleJsonResponse(response);
 };
 
-const isLoggedIn = (response: Response): boolean => {
-    if (response.status === 401) {
-        loggedInStore.set(null);
-        return false;
+const handleJsonResponse = async (response: Response): Promise<any> => {
+    const json = await response.json();
+
+    if ("error" in json) {
+        // handle
+        if (!isLoggedIn(response)) {
+            loggedInStore.set(null);
+        }
+        return null;
     }
-    return true;
+    if (!("data" in json)) {
+        return null;
+    }
+    return json.data;
+}
+
+const isLoggedIn = (response: Response): boolean => {
+    return response.status !== 401;
 }

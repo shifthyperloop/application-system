@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/:admissionId', async (req: express.Request, res: express.Response) => {
     const admission = await Admission.findById(req.params.admissionId);
-    res.send(admission);
+    res.json({data: admission});
 });
 
 router.post('', async (req: express.Request, res: express.Response, next: NextFunction) => {
@@ -14,7 +14,7 @@ router.post('', async (req: express.Request, res: express.Response, next: NextFu
             name: req.body.name,
         });
         await admission.save();
-        res.send(admission);
+        res.json({data: admission});
     } catch (err) {
         next(err);
     }
@@ -25,7 +25,7 @@ router.delete('/:admissionId', async (req: express.Request, res: express.Respons
         await Admission.findByIdAndDelete(req.params.admissionId);
 
         res.status(204)
-        res.send();
+        res.json({data: 'ok'});
     } catch (err) {
         res.status(404);
         next("Admission not found");
