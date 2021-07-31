@@ -31,11 +31,10 @@ const handleJsonResponse = async (response: Response): Promise<any> => {
     const json = await response.json();
 
     if ("error" in json) {
-        // handle
         if (!isLoggedIn(response)) {
             loggedInStore.set(null);
         }
-        return null;
+        throw new Error(json.error);
     }
     if (!("data" in json)) {
         return null;
