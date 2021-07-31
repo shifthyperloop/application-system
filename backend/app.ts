@@ -5,7 +5,7 @@ import express, {NextFunction} from 'express';
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import router from "./router";
+import router from "./routes/router";
 
 const port = 3000
 

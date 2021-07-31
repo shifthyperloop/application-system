@@ -1,13 +1,13 @@
 <script lang="ts">
   import {_} from 'svelte-i18n'
-  import getAdmissions from "../../api/admission/getAdmissions";
+  import getAllAdmissions from "../../api/admission/getAllAdmissions";
   import deleteAdmission from "../../api/admission/deleteAdmission";
   import AdmissionListItem from "./AdmissionListItem.svelte";
   import {Link} from 'svelte-navigator';
   import Admission from "../../model/Admission";
   import LoaderPage from "../Loader/LoaderPage.svelte";
 
-  let admissions: Admission[] | Promise<Admission[]> = getAdmissions();
+  let admissions: Admission[] | Promise<Admission[]> = getAllAdmissions();
 
   let deleteAdmissionClick = async (id: string) => {
       //TODO(eik): confirmation modal
