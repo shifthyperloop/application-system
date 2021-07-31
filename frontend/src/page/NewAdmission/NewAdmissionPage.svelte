@@ -9,6 +9,7 @@
   import User from "../../model/User";
   import {hasContent} from "../../utils/formValidators";
   import newAdmission from "../../api/admission/newAdmission";
+  import {navigate} from "svelte-navigator";
 
   let admission: Admission = new Admission();
   admission.deleteDate = new Date();
@@ -23,7 +24,8 @@
   let createAdmissionClick = async () => {
     admissionForm.validate();
     if ($admissionForm.valid) {
-      await newAdmission({...admission, groupNames});
+      const savedAdmission = await newAdmission({...admission, groupNames});
+      navigate("/admission/"+savedAdmission._id);
     }
   }
 
