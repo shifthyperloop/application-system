@@ -1,6 +1,6 @@
 <script lang="ts">
   import {_} from 'svelte-i18n'
-  import getAdmissions from "../../api/admissions/getAdmissions";
+  import getAdmissions from "../../api/admission/getAdmissions";
   import deleteAdmission from "../../api/admission/deleteAdmission";
   import AdmissionListItem from "./AdmissionListItem.svelte";
   import NewAdmissionInput from "./NewAdmissionInput.svelte";
