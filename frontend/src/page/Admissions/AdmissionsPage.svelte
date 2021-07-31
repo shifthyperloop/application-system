@@ -3,17 +3,14 @@
   import getAdmissions from "../../api/admission/getAdmissions";
   import deleteAdmission from "../../api/admission/deleteAdmission";
   import AdmissionListItem from "./AdmissionListItem.svelte";
-  import NewAdmissionInput from "./NewAdmissionInput.svelte";
+  import {Link} from 'svelte-navigator';
   import Admission from "../../model/Admission";
   import LoaderPage from "../Loader/LoaderPage.svelte";
 
   let admissions: Admission[] | Promise<Admission[]> = getAdmissions();
 
-  let onNewAdmission = async () => {
-    admissions = getAdmissions();
-  }
-
   let deleteAdmissionClick = async (id: string) => {
+      //TODO(eik): confirmation modal
     await deleteAdmission(id);
     admissions = (await admissions).filter(admission => admission._id !== id);
   }
@@ -43,7 +40,7 @@
             {#each admissions as admission}
                 <AdmissionListItem admission={admission} deleteAdmission={deleteAdmissionClick} />
             {/each}
-            <NewAdmissionInput onNewAdmission={onNewAdmission}/>
+            <Link to="/newAdmission">{$_("app.page.Admissions.new")}</Link>
         </ul>
     {:catch error}
         <h1>{error}</h1>

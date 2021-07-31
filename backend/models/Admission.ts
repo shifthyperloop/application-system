@@ -3,7 +3,7 @@ import mongoose, {Schema} from "mongoose";
 export interface IAdmission extends mongoose.Document {
     name: string;
     date: Date;
-    deleteData: Date;
+    deleteDate: Date;
     userIds: string[];
     admittingLeaders: boolean;
     admittingMembers: boolean;
@@ -15,7 +15,7 @@ const schema = new Schema<IAdmission>({
         required: true,
         unique: "Admission with this name already exists",
     },
-    date: {
+    createdDate: {
         type: Date,
         default: Date.now()
     },

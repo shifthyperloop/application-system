@@ -18,4 +18,4 @@ const schema = new Schema<IGroup>({
 
 const Group = model<IGroup>("Group", schema);
 
-module.exports = Group;
+export default Group;

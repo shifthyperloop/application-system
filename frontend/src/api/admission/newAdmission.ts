@@ -1,8 +1,17 @@
 import {apiPost} from "../apiRequest";
 import Admission from "../../model/Admission";
 
-const newAdmission = (name: string): Promise<Admission> => {
-    return apiPost('admission', {name});
+export interface NewAdmissionRequest {
+    name: string;
+    admittingLeaders: boolean;
+    admittingMembers: boolean;
+    userIds: string[];
+    groupNames: string[];
+    deleteDate: Date;
+}
+
+const newAdmission = (data: NewAdmissionRequest): Promise<Admission> => {
+    return apiPost('admission', {...data});
 }
 
 export default newAdmission;

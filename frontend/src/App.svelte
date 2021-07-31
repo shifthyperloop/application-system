@@ -3,6 +3,7 @@
   import {addMessages, getLocaleFromNavigator, init} from 'svelte-i18n';
   import AdmissionsPage from "./page/Admissions/AdmissionsPage.svelte";
   import AdmissionPage from "./page/Admission/AdmissionPage.svelte";
+  import NewAdmissionPage from "./page/NewAdmission/NewAdmissionPage.svelte";
   import NavigationBar from "./component/NavigationBar.svelte";
   import en from './intl/en.json';
   import no from './intl/no.json';
@@ -45,6 +46,7 @@
       <Route component={AdmissionsPage} />
       <Route path="/login" component={LoginPage} />
       <Route path="/signup" component={SignupPage} />
+      <Route path="/newAdmission" component={NewAdmissionPage} />
       <Route path="/admission/*admissionId" component={AdmissionPage} />
     </main>
   </Router>
